@@ -1,0 +1,163 @@
+# CSCI 363/540 – Assignment 1: CSV ETL Pipeline in Java
+
+**Author:** <Lashaun Baddol>  
+**Course:** CSCI 363/540  
+**Assignment:** 1 – CSV ETL Pipeline  
+
+---
+
+## How to Run
+
+From the project root (the folder containing `src/` and `data/`):
+
+```bash
+# Compile
+javac -d out -sourcepath src src/org/howard/edu/lsp/assignment2/ETLPipeline.java
+
+# Run
+java -cp out org.howard.edu.lsp.assignment2.ETLPipeline
+
+Assumptions
+
+Input CSV is comma-delimited and does not contain quoted strings or embedded commas.
+
+The first row is always a header and is not transformed.
+
+Program uses relative paths: both input and output are under the data/ folder.
+
+Malformed rows (wrong column count or number parse errors) are skipped and counted.
+
+Design Notes
+
+Program Structure: 
+
+Extract → reads products.csv, parses rows, skips invalid.
+
+Transform → applies transformations in strict order:
+
+Uppercase name
+
+10% discount for Electronics (with HALF_UP rounding)
+
+Recategorize Electronics > $500 → Premium Electronics
+
+Compute PriceRange from final price
+
+Load → writes transformed data to transformed_products.csv.
+
+Rounding: Used BigDecimal with RoundingMode.HALF_UP for consistent 2-decimal rounding.
+
+Error Handling:
+
+Missing input file → prints clear error message and exits gracefully.
+
+Empty input (header only) → writes output file with just the header.
+
+Malformed rows → skipped and counted.
+
+Summary: At the end of each run, prints number of rows read, transformed, skipped, and the output path.
+
+Testing Strategy
+
+Case A: Normal Input → verified output matches golden file.
+
+Case B: Empty Input → output contains only the header row.
+
+Case C: Missing Input File → program prints error and exits without crashing.
+
+
+
+AI Usage Documentation
+
+I used ChatGPT to assist with this assignment in several ways:
+
+Planning & Structure
+
+I asked for help breaking down the assignment step-by-step.
+
+ChatGPT suggested organizing the program into extract, transform, and load methods, which I followed.
+
+Code Guidance
+
+I requested sample code for reading/writing CSVs in plain Java and for using BigDecimal with RoundingMode.HALF_UP.
+
+I reviewed the generated examples and adapted them into my final implementation, making sure the transform order matched the assignment spec.
+
+Debugging Support
+
+I ran into file encoding (UTF-8 BOM) issues and package path errors in VS Code.
+
+ChatGPT walked me through fixing them step by step until the program compiled and ran correctly.
+
+Prompt Example:
+
+“CSCI 363/540 – Assignment 1: CSV ETL Pipeline in Java … walk me through it step by step like a toddler.”
+
+AI Response Excerpt:
+
+“make the folders: JavaProjectRoot/src/org/howard/edu/lsp/assignment2/ETLPipeline.java … paste this code … compile with javac -d out -sourcepath src …”
+
+How I Used It:
+
+I kept the overall structure (extract/transform/load), error handling, and the use of BigDecimal.
+
+I modified the code to match the exact assignment requirements (column order, transform sequence, summary printing).
+
+I added my own testing and README write-up.
+
+The final submission compiles and runs correctly, and all transformations match the provided golden outputs.
+
+External Sources
+
+Java BigDecimal Documentation
+
+Used to verify correct rounding with setScale(2, RoundingMode.HALF_UP).
+
+
+
+
+ 🧪 Testing Evidence
+
+### Case A: Normal Input
+- Input file: `data/products.csv` with 6 rows.  
+- Verified that the output matched the provided golden file.  
+- Run summary showed 6 rows read, 6 transformed, 0 skipped.  
+
+---
+
+### Case B: Empty Input
+Steps:  
+1. Edited `data/products.csv` to only contain the header row:  
+ProductID,Name,Price,Category
+
+markdown
+Copy code
+2. Ran the program.  
+3. Output file `data/transformed_products.csv` contained only:  
+ProductID,Name,Price,Category,PriceRange
+
+yaml
+Copy code
+4. Run summary confirmed 0 rows read and 0 transformed.
+
+**Screenshot:**  
+![Case B – Empty Input](ScreenshotA.png)
+
+---
+
+### Case C: Missing Input File
+Steps:  
+1. Renamed `products.csv` → `products_backup.csv` so the program couldn’t find it.  
+2. Ran the program.  
+3. Program printed a clear error message and exited gracefully.  
+ERROR: Could not find input file at 'data/products.csv'.
+Make sure you run from the project root and that data/products.csv exists.
+
+yaml
+Copy code
+4. No output file was created, no crash occurred.
+
+**Screenshot:**  
+![Case C – Missing File](caseC_missing.png)
+
+---
