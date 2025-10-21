@@ -9,3 +9,43 @@ AI usage:
   The conversation is included in the repository per exam policy.
 
 No third-party libraries or external tutorials were used.
+ Howard University — Large Scale Programming (Fall 2025)
+Midterm Question 4 — References
+
+Question Summary:
+Question 4 required designing and implementing a "Smart-Campus Device System"
+to demonstrate object-oriented programming principles of inheritance,
+abstraction, and interface implementation.
+
+The task specified:
+• An abstract base class: Device.java (provided in prompt)
+• Two interfaces: Networked and BatteryPowered
+• Three concrete classes: DoorLock, Thermostat, Camera
+• A provided driver: Main.java (testing heartbeat, connectivity, and polymorphism)
+• A short rationale explaining abstraction, interfaces, and multiple inheritance.
+
+Sources and Development Process:
+• All specifications and base class structure derived directly from the
+  Midterm Exam prompt (Google Doc provided by instructor, October 20, 2025).
+• Student authored Networked.java, BatteryPowered.java, DoorLock.java,
+  Thermostat.java, and Camera.java following the behavioral contracts.
+• ChatGPT (GPT-5, October 20, 2025) was used interactively to:
+  – Debug PowerShell compilation commands (`javac -d out ...`)
+  – Verify method overrides and ensure matching signatures
+  – Explain rationale about abstraction, interface polymorphism, and inheritance
+  – Provide expected runtime output for validation
+• All code compiled and executed successfully under
+  `java -cp out org.howard.edu.lsp.midterm.question4.Main`.
+
+Deliverables produced:
+• Device.java (unmodified, from prompt)
+• Networked.java
+• BatteryPowered.java
+• DoorLock.java
+• Thermostat.java
+• Camera.java
+• Main.java (unmodified, from prompt)
+• Question4_Rationale.txt
+
+No external frameworks, libraries, or tutorials were used.
+All testing performed locally by the student.

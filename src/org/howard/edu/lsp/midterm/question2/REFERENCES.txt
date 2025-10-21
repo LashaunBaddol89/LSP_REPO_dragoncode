@@ -1,0 +1,34 @@
+Howard University — Large Scale Programming (Fall 2025)
+Midterm Question 2 — References
+
+Question Summary:
+Question 2 required implementing a class named AreaCalculator with four
+overloaded static methods named `area(...)` to compute the areas of
+different shapes:
+• Circle: area(double radius)
+• Rectangle: area(double width, double height)
+• Triangle: area(int base, int height)
+• Square: area(int side)
+
+Each method throws an IllegalArgumentException if any dimension ≤ 0.
+A separate Main.java demonstrates all overloads, exact expected outputs,
+and exception handling.
+
+Sources and Development Process:
+• Original problem statement taken directly from the Midterm Exam prompt
+  (Google Doc provided by the instructor, October 20, 2025).
+• Code and logic implemented by the student based on standard geometry
+  formulas and Java overloading rules.
+• ChatGPT (GPT-5, October 20, 2025) was used to review syntax correctness,
+  validate arithmetic expressions, and help verify exception handling
+  behavior for negative inputs.
+• All output formatting and final code were written and verified manually
+  by the student through local testing.
+
+Deliverables produced:
+• AreaCalculator.java
+• Main.java
+• Working output demonstrating all overloaded methods and exception handling.
+
+No external code repositories, textbooks, or web examples were used.
+All material derives from the course prompt and the student's own implementation.
