@@ -1,0 +1,11 @@
+Midterm Question 4 — Smart-Campus Device System — References
+
+Primary sources:
+• Midterm prompt (Device base class and Main driver code) as provided in the instructor’s Google Doc, October 20, 2025.
+
+AI usage:
+• ChatGPT (GPT-5 Thinking), session on October 20, 2025, used to outline interfaces (Networked, BatteryPowered)
+  and concrete classes (DoorLock, Thermostat, Camera), and to verify compile/run steps.
+  The conversation is included in the repository per exam policy.
+
+No third-party libraries or external tutorials were used.
