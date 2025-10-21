@@ -1,0 +1,54 @@
+Howard University — Large Scale Programming (Fall 2025)
+Midterm Essays — Q1, Q3, Q5
+Student: [Your Name]
+Date: October 20, 2025
+
+========================================
+Question 1 (20 pts) — Cohesion & Riel Heuristics
+========================================
+a) Should a well-designed class have high or low cohesion? Explain. (5 pts)
+
+A well-designed class should have **high cohesion**: its responsibilities should be tightly related to a single purpose, making the class easier to reason about, change, and test. High cohesion reduces ripple effects when requirements change and supports clearer interfaces and stronger encapsulation.
+
+b) Analyze StudentPortalHelper using Arthur Riel heuristics and discuss changes. (15 pts)
+
+Using Riel’s cohesion heuristics (e.g., “A class should have one reason to change” and “Services offered by a class should be closely related to one another”), StudentPortalHelper shows **low cohesion**. It mixes unrelated concerns:
+• GPA computation (business logic)
+• CSV export (I/O)
+• Email formatting (presentation/content)
+• Date formatting (UI)
+• Payment processing (integration)
+• Password strength (security)
+• Ad-hoc caching (stateful infra)
+
+Refactor approach (improve cohesion via separation of concerns):
+• Grades/GPA → `GpaService` (pure computation)
+• Roster export → `RosterCsvExporter` (I/O boundary)
+• Email text → `EmailTemplateService` (content generation)
+• Date formatting for UI → `UiDateFormatter` (presentation concern)
+• Payments → `TuitionPaymentGateway` (integration boundary / adapter)
+• Password policy → `PasswordPolicy` (security rules)
+• Caching → replace ad-hoc map with a dedicated `Cache` abstraction (or rely on a framework)
+Each class then has one responsibility and aligns to a single reason to change (e.g., policy change affects `PasswordPolicy` only). This yields **high cohesion**, easier unit testing, and clearer dependencies.
+
+========================================
+Question 3 (20 pts) — Trim Levels & Composition
+========================================
+a) Does the current structure support changing trim level during manufacturing? Why or why not? (10 pts)
+
+**No.** The current design models trims (`Base`, `Sports`, `Luxury`) as subclasses of `Car`. Because trim is encoded in the object’s **type**, it’s fixed at construction time. Changing from `Sports` to `Luxury` would require creating a new object of a different subclass, which doesn’t preserve identity/state mid-build and is awkward for the workflow. By contrast, the engine is already handled by composition, which *is* swappable.
+
+b) Refactor to allow dynamic trim changes using composition. (10 pts)
+
+Use **composition over inheritance**: make `Car` *have a* `Trim` object that encapsulates trim-specific data/behavior (e.g., name, price delta, warranty, feature limits). Provide concrete trims (`BaseTrim`, `SportsTrim`, `LuxuryTrim`) implementing a `Trim` interface. Add `setTrim(Trim t)` on `Car` and delegate trim-varying behavior to this field. This enables runtime switching (Base → Sports → Luxury) while avoiding subclass explosion (e.g., `SportsElectricCar`). If some engines are incompatible with certain trims, validate in `setTrim` or `Trim.supports(engine)`.
+
+
+
+========================================
+Question 5 (10 pts) — Reflection on AI Use
+========================================
+Before this course, I used AI tools like ChatGPT and GitHub Copilot mostly for quick syntax help, documentation drafting, and exploring unfamiliar APIs. During this course, I started using them more strategically to deepen understanding of OOP (inheritance vs. composition), to reason about design trade-offs, and to sanity-check Java tasks (like ETL transformations and this smart-campus device system). Instead of taking answers at face value, I used AI as a tutor: asking “why,” requesting alternative designs, and validating outputs with my own tests.
+
+The benefits were faster feedback loops, clearer explanations, and fewer dead-ends while debugging. Limitations included occasional hallucinated details or solutions that didn’t match assignment constraints, which reinforced that I must verify and tailor results myself. Going forward, I expect AI to remain a core assistant for brainstorming, code review, and research, while I retain ownership of correctness, security, and alignment to requirements.
+
+

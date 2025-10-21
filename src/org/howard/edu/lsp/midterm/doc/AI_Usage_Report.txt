@@ -1,0 +1,78 @@
+Howard University — Large Scale Programming (Fall 2025)
+Midterm Exam — AI Usage Report
+Student: [Your Name]
+Date: October 20, 2025
+
+========================================
+Purpose
+========================================
+This document summarizes how AI assistance (ChatGPT — GPT-5) was used
+throughout the Large-Scale Programming midterm exam. 
+Per exam policy, all AI-generated or AI-assisted content is acknowledged here.
+
+========================================
+Summary of AI Use
+========================================
+• Question 1 (Cohesion Analysis):
+  I used ChatGPT to help restate Arthur Riel’s cohesion heuristics and
+  to structure my explanation of how StudentPortalHelper violates 
+  single-responsibility principles. The analysis and refactor outline
+  were then rewritten in my own words.
+
+• Question 2 (AreaCalculator Program):
+  I asked for guidance on verifying method overloading and exception
+  handling. ChatGPT provided an example structure, which I adapted to 
+  match the assignment’s output format.
+
+• Question 3 (Car Trim-Level Refactor):
+  ChatGPT helped me understand how composition could replace subclassing
+  to allow dynamic trim changes. I expanded this explanation and connected
+  it to my own understanding of design patterns.
+
+• Question 4 (Smart-Campus Device System):
+  ChatGPT helped me outline the full Java structure (Device, interfaces,
+  and subclasses), correct syntax issues, debug compile errors in PowerShell,
+  and write the rationale about abstraction and interfaces. I verified all
+  code locally before committing it.
+
+• Question 5 (AI Reflection):
+  I collaborated with ChatGPT to draft the reflection, focusing on how AI
+  supported my learning and debugging process. The final paragraph is my
+  personal reflection rewritten in my own words.
+
+========================================
+Verification
+========================================
+All code was reviewed, compiled, and tested by me personally before submission.
+AI was used only for explanation, structure, and debugging — not for direct
+submission of unverified code.
+
+========================================
+Acknowledgement
+========================================
+Tool used: ChatGPT (GPT-5, OpenAI)
+Sessions: October 19–20, 2025
+All relevant excerpts are included below.
+
+========================================
+Selected Excerpts
+========================================
+Example – Debugging Question 4 (Camera.java)
+----------------------------------------
+User: "how i test all the files you had me make before with the camera.java, DoorLock.java and the rest"
+AI: "Use javac -d out (Get-ChildItem -Recurse ...) then java -cp out org.howard.edu.lsp.midterm.question4.Main"
+
+Example – Essay Guidance for Question 1
+----------------------------------------
+AI: "Using Riel’s cohesion heuristics… StudentPortalHelper shows low cohesion.
+It mixes unrelated concerns: GPA computation, CSV export, email formatting..."
+User: "that’s the perfect structure."
+
+Example – Rationale Explanation
+----------------------------------------
+AI: "Device is defined as an abstract class because it represents the shared
+core of all campus devices but should never be instantiated…"
+
+========================================
+End of Report
+========================================
